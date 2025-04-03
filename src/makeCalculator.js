@@ -7,16 +7,12 @@
 function makeCalculator() {
   const systemObj = {
     result: 0,
-    add: (value) => value,
-    subtract: (value) => -value,
-    multiply: (value, currentResult) => value * currentResult,
+    add: (value, current) => current + value,
+    subtract: (value, current) => current - value,
+    multiply: (value, current) => value * current,
     divide: (value, current) => (value === 0 ? current : current / value),
     operate(callback, inputNum) {
-      if (callback === this.multiply || callback === this.divide) {
-        this.result = callback(inputNum, this.result);
-      } else {
-        this.result = this.result + callback(inputNum);
-      }
+      this.result = callback(inputNum, this.result);
 
       return this;
     },
